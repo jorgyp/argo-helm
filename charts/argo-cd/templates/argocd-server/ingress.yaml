@@ -10,12 +10,13 @@ apiVersion: extensions/v1beta1
 {{ end -}}
 kind: Ingress
 metadata:
-{{- if .Values.server.ingress.annotations }}
   annotations:
+    kubernetes.io/ingress.global-static-ip-name: argocd-ext-ip
+    networking.gke.io/managed-certificates: argocd-certificate
+    kubernetes.io/ingress.allow-http: "false"  
   {{- range $key, $value := .Values.server.ingress.annotations }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
-{{- end }}
   name: {{ template "argo-cd.server.fullname" . }}
   labels:
     app.kubernetes.io/name: {{ include "argo-cd.name" . }}-{{ .Values.server.name }}

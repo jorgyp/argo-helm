@@ -21,6 +21,8 @@ global:
   # - ip: 10.20.30.40
   #   hostnames:
   #   - git.myhostname
+name:
+  APPLICATION: argocd
 
 ## Controller
 controller:
@@ -340,6 +342,19 @@ redis-ha:
     tag: 5.0.8-alpine
 
 ## Server
+managedCertificate: true
+
+ingressConfigurations:
+  standardAuth:
+    suffix: basic
+    ingressAnnotations:
+      kubernetes.io/ingress.allow-http: "false"
+    ingressPorts:
+      - backend:
+        serviceName: argocd-server 
+        servicePort: 80
+        path: /*
+
 server:
   name: server
 
@@ -439,7 +454,8 @@ server:
   service:
     annotations: {}
     labels: {}
-    type: ClusterIP
+    # type: ClusterIP
+    type: NodePort
     servicePortHttp: 80
     servicePortHttps: 443
     servicePortHttpName: http
@@ -469,7 +485,7 @@ server:
     annotations: {}
 
   ingress:
-    enabled: false
+    enabled: true
     annotations: {}
     labels: {}
 

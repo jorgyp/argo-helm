@@ -497,7 +497,7 @@ server:
       []
       # - argocd.example.com
     paths:
-      - /
+      - /*
     extraPaths:
       []
       # - path: /*

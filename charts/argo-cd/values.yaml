@@ -352,7 +352,7 @@ ingressConfigurations:
     ingressPorts:
       - backend:
         serviceName: argocd-server 
-        servicePort: 80
+        servicePort: 8080
         path: /*
 
 server:
@@ -454,9 +454,9 @@ server:
   service:
     annotations: {}
     labels: {}
-    # type: ClusterIP
-    type: NodePort
-    servicePortHttp: 80
+    type: ClusterIP
+    # type: NodePort
+    servicePortHttp: 8080
     servicePortHttps: 443
     servicePortHttpName: http
     servicePortHttpsName: https
@@ -497,7 +497,7 @@ server:
       []
       # - argocd.example.com
     paths:
-      - /
+      - /*
     extraPaths:
       []
       # - path: /*

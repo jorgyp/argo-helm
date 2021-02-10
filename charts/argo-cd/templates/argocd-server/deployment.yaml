@@ -53,6 +53,7 @@ spec:
         imagePullPolicy: {{ default .Values.global.image.imagePullPolicy .Values.server.image.imagePullPolicy }}
         command:
         - argocd-server
+        - --insecure
         - --staticassets
         - /shared/app
         - --repo-server

@@ -353,7 +353,7 @@ ingressConfigurations:
       - backend:
         serviceName: argocd-server 
         servicePort: 8080
-        path: /*
+        path: /
 
 server:
   name: server
